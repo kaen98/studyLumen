@@ -14,3 +14,6 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('show', ['uses' => 'UserController@show']);
+$router->get('testMysql', ['uses' => 'UserController@testMysql']);
