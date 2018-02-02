@@ -20,7 +20,10 @@ class UserController extends Controller
         if (!$arrayData) {
             return $this->error('data数据格式非法');
         }
-        $insertData = $arrayData;
+        $insertData = array_merge($arrayData, array(
+            'create_t' => date('Y-m-d H:i:s'),
+            'update_t' => date('Y-m-d H:i:s'),
+        ));
         $insertRst = DB::collection('collectData')
             ->insert($insertData);
         if(!$insertData) {
