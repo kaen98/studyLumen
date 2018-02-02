@@ -3,6 +3,9 @@
  *  Github: https://github.com/AlloyTeam/AlloyLever
  *  MIT Licensed.
  */
+
+
+
 ;(function (root, factory) {
     if(typeof exports === 'object' && typeof module === 'object')
         module.exports = factory()
@@ -226,3 +229,16 @@
 
     return AlloyLever
 });
+
+
+// 用法:
+AlloyLever.config({
+    cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+    reportUrl: "http://localhost/kaen/studyLumen/public/abnormalReport",
+    reportPrefix: 'abc',
+    reportKey: 'msg',
+    otherReport: {
+        uin: 100000
+    },
+    entry:"#entry"
+})
