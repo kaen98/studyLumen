@@ -5,6 +5,7 @@
 // 抓取cookie值
 // 抓取URL地址信息
 // 源生ajax请求
+// img请求
 
 window.onload = function() {
 

@@ -19,5 +19,6 @@ $router->get('show', ['uses' => 'UserController@show']);
 
 $router->post('add', ['uses' => 'UserController@add']);
 $router->get('add', ['uses' => 'UserController@add']);
+$router->get('abnormalReport', ['uses' => 'UserController@abnormalReport']);
 
 $router->get('testMysql', ['uses' => 'UserController@testMysql']);

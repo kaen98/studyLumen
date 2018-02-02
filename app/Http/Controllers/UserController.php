@@ -11,6 +11,7 @@ class UserController extends Controller
         dd($res);
     }
 
+    // 流量统计
     public function add(Request $request) {
         $data = $request->input('data');
         if (!$data){
@@ -26,7 +27,25 @@ class UserController extends Controller
         ));
         $insertRst = DB::collection('collectData')
             ->insert($insertData);
-        if(!$insertData) {
+        if(!$insertRst) {
+            return $this->error('存储数据失败');
+        }
+        return $this->success('ok');
+    }
+
+    // 前端异常监控上报
+    public function abnormalReport(Request $request) {
+        $msg = $request->input('msg');
+        if (!$msg) {
+            return $this->error('msg数据缺失');
+        }
+        $insertRst = DB::collection('abnormalReport')
+            ->insert([
+                'msg' => $msg,
+                'create_t' => date('Y-m-d H:i:s'),
+                'update_t' => date('Y-m-d H:i:s'),
+            ]);
+        if(!$insertRst) {
             return $this->error('存储数据失败');
         }
         return $this->success('ok');

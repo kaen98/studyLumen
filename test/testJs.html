@@ -4,11 +4,29 @@
 <title>标题</title>
 </head>
 
+<!-- 异常监控 -->
+<script src="./js/alloy-lever.js"></script>
+<script>
+    AlloyLever.config({
+        cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+        reportUrl: "http://localhost/kaen/studyLumen/public/abnormalReport",
+        reportPrefix: 'abc',
+        reportKey: 'msg',
+        otherReport: {
+            uin: 100000
+        },
+        entry:"#entry"
+	})
+</script>
+
 <body>
 <p>body </p>
 <p>title </p>
 </body>
-
 </html>
+<script type="text/javascript">
+	var a = b;
+</script>
+<!-- 流量数据监控 -->
 <script type="text/javascript" src="./js/collect.js"></script>
 
