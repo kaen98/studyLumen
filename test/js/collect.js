@@ -1,11 +1,15 @@
-// v1.0  
+// v1.0 前端异常监控demo
+// 
+// 上传数据:  
 // 抓取标题
 // 抓取 userAgent
 // 分析客户端环境(系统, 浏览器环境)
 // 抓取cookie值
 // 抓取URL地址信息
-// 源生ajax请求
-// img请求
+// 
+// 请求方式: 
+// 源生ajax请求  img请求
+// 
 
 window.onload = function() {
 
@@ -144,7 +148,7 @@ window.onload = function() {
                 //user-agent  
                 agent : agent,  
                 //是否为IE  
-                isIE : /msie/.test(agent),  
+                isIE : /msie/.test(agent) || /trident/.test(agent),  
                 //Gecko内核  
                 isGecko: agent.indexOf("gecko")>0 && agent.indexOf("like gecko")<0,  
                 //webkit内核  
@@ -161,8 +165,9 @@ window.onload = function() {
                 },  
                 //获取IE的版本号  
                 ieVersion:function(){  
-                    try {  
-                       return agent.match(/msie ([\d.]+)/)[1] || 0;  
+                    try {
+                       // msie识别 IE11 之前版本, rv:识别 IE11
+                       return agent.match(/msie ([\d.]+)/)[1] || agent.match(/rv:([\d.]+)/)[1] || 0;  
                     } catch(e) {  
                        console.log("error");  
                        return IEMode;  
